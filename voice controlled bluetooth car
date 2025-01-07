@@ -1,0 +1,62 @@
+void setup() {
+  // Initialize pin modes
+  pinMode(8, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+  
+  // Start the serial communication
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Check if data is available to read
+  if (Serial.available()) {
+    // Read the incoming command string
+    String x = Serial.readString(); // Reads the input as a string
+    
+    // Debug: print the command received
+    Serial.println(x);
+    
+    // Check if the input matches one of the expected commands
+    if (x == "forward") {
+      // Move forward
+      digitalWrite(8, HIGH);
+      digitalWrite(9, LOW);
+      digitalWrite(10, HIGH);
+      digitalWrite(11, LOW);
+    } 
+    else if (x == "backward") {
+      // Move backward
+      digitalWrite(8, LOW);
+      digitalWrite(9, HIGH);
+      digitalWrite(10, LOW);
+      digitalWrite(11, HIGH);
+    } 
+    else if (x == "right") {
+      // Turn right
+      digitalWrite(8, LOW);
+      digitalWrite(9, LOW);
+      digitalWrite(10, HIGH);
+      digitalWrite(11, LOW);
+    } 
+    else if (x == "left") {
+      // Turn left
+      digitalWrite(8, LOW);
+      digitalWrite(9, LOW);
+      digitalWrite(10, HIGH);
+      digitalWrite(11, LOW);
+      digitalWrite(8, HIGH);
+      digitalWrite(9, LOW);
+      digitalWrite(10, LOW);
+      digitalWrite(11, LOW);
+    } 
+    else {
+      // Stop all motors if the command is unknown
+      digitalWrite(8, LOW);
+      digitalWrite(9, LOW);
+      digitalWrite(10, LOW);
+      digitalWrite(11, LOW);
+    }
+  }
+}
