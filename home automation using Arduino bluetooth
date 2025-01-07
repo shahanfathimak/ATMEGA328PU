@@ -1,0 +1,33 @@
+void setup() {
+  // Initialize pin modes
+  pinMode(8, OUTPUT);
+ 
+  // Start the serial communication
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Check if data is available to read
+  if (Serial.available()) {
+    // Read the incoming command string
+    String x = Serial.readString(); // Reads the input as a string
+    
+    // Debug: print the command received
+    Serial.println(x);
+    
+    
+    if (x == "turn on light") {
+     
+      digitalWrite(8, HIGH);
+    } 
+    
+    else if(x == "turn off light") {
+     
+      digitalWrite(8, LOW);
+     
+    }
+    else{
+      digitalWrite(8, LOW);
+    }
+  }
+}
